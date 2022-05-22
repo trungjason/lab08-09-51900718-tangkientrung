@@ -1,0 +1,334 @@
+<div class="container">
+  <div class="row align-items-center py-5">
+    <div class="col-6">
+      <h3>Quản lý sản phẩm</h3>
+    </div>
+
+    <div class="col-6">
+      <div class="dropdown text-right">
+        Xin chào
+        <a
+          class="dropdown-toggle text-primary"
+          data-toggle="dropdown"
+        >{{username}}</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/logout">
+            <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp; Đăng xuất</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-group my-3">
+    <button type="button" class="btn btn-light border mr-3" data-toggle="modal" data-target="#addProduct">
+      <i class="fa fa-plus-square" ></i>
+      Thêm sản phẩm
+    </button>
+  </div>
+
+  <table class="table table-hover border text-center">
+    <thead>
+      <tr>
+        <th>Tên sản phẩm</th>
+        <th>Giá sản phẩm</th>
+        <th>Mô tả sản phẩm</th>
+        <th>Hình ảnh</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
+</div>
+
+<!-- message dialog -->
+<div class="modal fade" id="message-dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+        >&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p>Bạn không được cấp quyền để xóa tập tin/thư mục này</p>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-info"
+          data-dismiss="modal"
+        >Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Add -->
+<div
+  class="modal fade"
+  id="addProduct"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addProductLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form id="form-add-product">
+        {{! Modal header }}
+        <div class="modal-header">
+          <h4 class="text-success">Thêm sản phẩm mới</h4>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="product-name">Tên sản phẩm</label>
+            <input
+              required
+              class="form-control"
+              type="text"
+              placeholder="Nhập tên sản phẩm"
+              id="product-name"
+              name="product-name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="product-price">Giá sản phẩm</label>
+            <input
+              required
+              class="form-control"
+              type="number"
+              placeholder="Nhập giá sản phẩm"
+              min="0"
+              id="product-price"
+              name="product-price"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="product-description">Mô tả sản phẩm</label>
+
+            <textarea
+              required
+              class="form-control"
+              placeholder="Nhập mô tả sản phẩm"
+              id="product-description"
+              name="product-description"
+            ></textarea>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="product-image">Hình ảnh sản phẩm</label>
+
+            <div class="custom-file">
+              <input
+                required
+                type="file"
+                class="custom-file-input"
+                id="product-image"
+                accept="image/*"
+              />
+              <label class="custom-file-label" for="product-image">Chọn hình</label>
+            </div>
+          </div>
+
+          <strong>
+            <div id="add-product-alert" class="alert alert-danger">
+
+            </div>
+          </strong>
+
+        </div>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >Đóng</button>
+          <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm delete -->
+<div
+  class="modal fade"
+  id="deleteProduct"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deleteProductLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <form id="form-delete-product">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title text-danger">Xóa sản phẩm</h4>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          Bạn có chắc rằng muốn xóa
+          <strong id="delete-product-name" class="text-danger"></strong>?
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-dark"
+            data-dismiss="modal"
+          >Đóng</button>
+          <button type="submit" class="btn btn-danger">Xóa</button>
+        </div>
+      </div>
+
+      <input type="hidden" name="deleted-product-id" />
+    </form>
+  </div>
+</div>
+<!-- End Confirm delete -->
+
+<!-- Update user -->
+<div
+  class="modal fade"
+  id="updateProduct"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="updateProductLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Cập nhật thông tin sản phẩm</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form id="form-update-product">
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="modal-body">
+          <div class="form-group">
+            <label for="product-name">Tên sản phẩm</label>
+            <input
+              required
+              class="form-control"
+              type="text"
+              placeholder="Nhập tên sản phẩm"
+              id="product-name"
+              name="product-name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="product-price">Giá sản phẩm</label>
+            <input
+              required
+              class="form-control"
+              type="number"
+              placeholder="Nhập giá sản phẩm"
+              min="0"
+              id="product-price"
+              name="product-price"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="product-description">Mô tả sản phẩm</label>
+
+            <textarea
+              required
+              class="form-control"
+              placeholder="Nhập mô tả sản phẩm"
+              id="product-description"
+              name="product-description"
+            ></textarea>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="product-image">Hình ảnh sản phẩm</label>
+
+            <div class="custom-file">
+              <input               
+                type="file"
+                class="custom-file-input"
+                id="product-image"
+                name="product-image"
+                accept="image/*"
+              />
+              <label class="custom-file-label" for="product-image">Chọn hình</label>
+            </div>
+          </div>
+
+          <input type="hidden" name="product-id" />
+
+          <strong>
+            <div id="update-product-alert" class="alert alert-danger">
+
+            </div>
+          </strong>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-dark"
+            data-dismiss="modal"
+          >Đóng</button>
+          <button type="submit" class="btn btn-primary">Cập nhật</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End Update user -->
+
+<script>
+  // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function () { var fileName =
+  $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+</script>
+
+<script src="/javascripts/product-management.js"></script>

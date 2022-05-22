@@ -1,0 +1,140 @@
+<div class="container">
+  <div class="row align-items-center py-5">
+    <div class="col-6">
+      <h3>Quản lý sản phẩm</h3>
+    </div>
+
+    <div class="col-6">
+      <div class="dropdown text-right">
+        Xin chào
+        <a
+          class="dropdown-toggle text-primary"
+          data-toggle="dropdown"
+        >{{username}}</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/logout">
+            <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp; Đăng xuất</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-group my-3">
+    <button type="button" class="btn btn-light border mr-3" data-toggle="modal" data-target="#addProduct">
+      <i class="fa fa-plus-square" ></i>
+      Thêm sản phẩm
+    </button>
+  </div>
+
+  <table class="table table-hover border">
+    <thead>
+      <tr>
+        <th>Tên sản phẩm</th>
+        <th>Giá sản phẩm</th>
+        <th>Mô tả sản phẩm</th>
+        <th>Hình ảnh</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each files}}
+        <tr id="{{hash}}">
+          <td>
+            {{{icon}}}
+            <a href="{{../username}}/{{name}}" isDirectory="{{isDirectory}}">{{name}}</a>
+          </td>
+          <td>{{type}}</td>
+          <td>{{size}}</td>
+          <td>{{lastModified}}</td>
+          <td>
+            <span><i class="fa fa-download action"></i></span>
+            <span onclick="confirmRename(event, {{isDirectory}}, '{{name}}')" data-toggle="modal" data-target="#confirm-rename"><i class="fa fa-edit action"></i></span>
+            <span onclick="confirmDelete(event, {{isDirectory}}, '{{name}}')" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-trash action"></i></span>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <div class="border rounded mb-3 mt-5 p-3">
+    <h4>File upload</h4>
+    <form id="form-upload-file">
+      <div class="form-group">
+        <div class="custom-file">
+          <input name="uploadFile" type="file" class="custom-file-input" id="customFile" />
+          <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="progress" style="height:5px">
+          <div
+            id="progress-indicator"
+            class="progress-bar bg-success"
+            style="width:40%;height:10px"
+          ></div>
+        </div>
+      </div>
+
+      <p class="small">Người dùng chỉ được upload tập tin có kích thước tối đa
+        là 20 MB. Các tập tin thực thi (*.exe, *.msi, *.sh) không được phép
+        upload.</p>
+      <p class="small">Khi nhấn nút upload thì</p>
+      <ul class="small">
+        <li>Progress bar sẽ hiển thị tiến độ của quá trình upload. Ban đầu
+          progress bar bị ẩn đi.</li>
+        <li>Khi đang diễn ra quá trình upload thì button
+          <strong>Upload</strong>
+          sẽ bị disabled.</li>
+        <li>Sau khi upload thành công thì progress bar được ẩn đi, file sẽ được
+          hiển thị trong danh sách bên trên và button được enabled trở lại.</li>
+      </ul>
+
+      <button type="submit" class="btn btn-success px-5">Upload</button>
+    </form>
+  </div>
+</div>
+
+
+<!-- message dialog -->
+<div class="modal fade" id="message-dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Xóa file</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+        >&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p>Bạn không được cấp quyền để xóa tập tin/thư mục này</p>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-info"
+          data-dismiss="modal"
+        >Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<form id="download-folder-form" method="post" action="http://localhost:3000/download-folder">
+  <input type="hidden" name="folderPath" />
+</form>
+
+<script>
+  // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function () { var fileName =
+  $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+</script>
+<script src="/javascripts/file.js"></script>
+<script src="/javascripts/fileUpload.js"></script>

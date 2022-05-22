@@ -1,0 +1,165 @@
+### Register account
+POST http://localhost:3000/api/account/register HTTP/1.1
+content-type: application/json
+
+{
+    "username": "kientrung",
+    "email": "admin@gmail.com",
+    "password": "123456",
+    "password_confirm": "123456"
+}
+
+# {
+#     "username": "trungdeptrai",
+#     "email": "trung@gmail.com",
+#     "password": "123456",
+#     "password_confirm": "123456"
+# }
+
+### Login 
+POST http://localhost:3000/api/account/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "kientrung",
+    "password": "123456"
+}
+
+#### GET all Product
+GET http://localhost:3000/api/products HTTP/1.1
+
+### Get Product detail
+GET http://localhost:3000/api/products/6279fd15f5f7ee2f2cf81d3f HTTP/1.1
+
+### Add product
+POST http://localhost:3000/api/products HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjI4MTE3NWMwNmM4NzZkMmFlNWE2NWI1IiwidXNlcm5hbWUiOiJraWVudHJ1bmciLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIHwgQWRtaW4iLCJpYXQiOjE2NTI2MjczMzMsImV4cCI6MTY1MjYzMDkzM30.9SQiqKDJrRwx5Ox1DldIK9NHN0bF-IZX8mAIrZgyKN0
+content-type: application/json
+
+# {
+#     "name" : "Laptop Acer Gaming Predator Triton 300 PT315-53-77CV NH.QDQSV.002",
+#     "price" : 34990000,
+#     "image" : "laptop_1.jpg",
+#     "description" : "Core™ i7-11800H | 16GB | 512GB | RTX 3060 6GB | 15.6 inch WQHD (2K) | Win 11 | Đen"
+# }
+
+# {
+#     "name" : "Laptop Acer Gaming Nitro 5 Eagle AN515-57-720A NH.QEQSV.004",
+#     "price" : 26990000,
+#     "image" : "laptop_2.jpg",
+#     "description" : "Core™ i7-11800H | 8GB | 512GB | RTX 3050 Ti 4GB | 15.6 inch FHD | Win 11 | Đen"
+# }
+
+# {
+#     "name" : "Laptop Acer Gaming Aspire 7 A715-42G-R4XX NH.QAYSV.008",
+#     "price" : 14999000,
+#     "image" : "laptop_3.jpg",
+#     "description" : "Ryzen 5-5500U | 8GB | 256GB | GTX 1650 4GB | 15.6 inch FHD | Win 11 | Đen"
+# }
+
+# {
+#     "name" : "Laptop Dell G15 Ryzen Edition 5515 70266674",
+#     "price" : 27590000,
+#     "image" : "laptop_4.jpg",
+#     "description" : "Ryzen™ 7-5800H | 8GB | 512GB | RTX 3050 4GB | 15.6 Inch FHD | Win 11 | Office | Xám"
+# }
+
+# {
+#     "name" : "Laptop MSI Modern 14 B11MOU 1030VN",
+#     "price" : 12390000,
+#     "image" : "laptop_5.jpg",
+#     "description" : "Core i3-1115G4 | 8GB | 256GB | Intel UHD | 14 inch FHD | Win 11 | Gray"
+# }
+
+{
+    "name" : "Laptop Dell Vostro 3510 V5I3305W",
+    "price" : 12990000,
+    "image" : "laptop_6.jpg",
+    "description" : "Core ™ i3-1115G4 | 8GB | 256GB | Intel UHD | 15.6-inch FHD | Win 11 | Đen"
+}
+
+### Update product
+PUT http://localhost:3000/api/products/6279e7782e169b9a684cf16b HTTP/1.1
+content-type: application/json
+
+{
+    "name" : "Laptop MSI Đã qua sử dụng",
+    "price" : 13000000,
+    "image" : "laptop1.png",
+    "description" : "Laptop MSI CPU i5 11105F 32GB RAM"
+}
+
+### Delete product
+DELETE http://localhost:3000/api/products/6279e7782e169b9a684cf16b HTTP/1.1
+6278eca669fc4973410da337
+6278eca769fc4973410da339
+6278eca769fc4973410da33b
+6278eca869fc4973410da33d
+62793c1bc5919e407ebb16cd
+6279e7782e169b9a684cf16b
+
+#### GET all order
+GET http://localhost:3000/api/orders HTTP/1.1
+
+### Get Order detail
+GET http://localhost:3000/api/orders/6279e66fccc253932c35d75f HTTP/1.1
+
+### Add order
+POST http://localhost:3000/api/orders HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjI4MTE3NWMwNmM4NzZkMmFlNWE2NWI1IiwidXNlcm5hbWUiOiJraWVudHJ1bmciLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIHwgQWRtaW4iLCJpYXQiOjE2NTI2MjczMzMsImV4cCI6MTY1MjYzMDkzM30.9SQiqKDJrRwx5Ox1DldIK9NHN0bF-IZX8mAIrZgyKN0
+content-type: application/json
+
+# OKE
+{
+    "total_price" : 115097006,
+    "product_list": [
+        {"product_id": "6279fd15f5f7ee2f2cf81d3f",
+         "amount": 2}, 
+        {"product_id": "6279fd24f5f7ee2f2cf81d43",
+         "amount": 3},
+         {"product_id": "627b870bc04291b8271cba98",
+         "amount": 6}]
+}
+
+# Invalid total price
+# {
+#     "total_price" : 10000000,
+#     "product_list": [
+#         {"product_id": "6279fd15f5f7ee2f2cf81d3f",
+#          "amount": 2}, 
+#         {"product_id": "6279fd24f5f7ee2f2cf81d43",
+#          "amount": 3},
+#          {"product_id": "627b870bc04291b8271cba98",
+#          "amount": 6}]
+# }
+
+# Invalid amount
+# {
+#     "total_price" : 10000000,
+#     "product_list": [
+#         {"product_id": "6279fd15f5f7ee2f2cf81d3f",
+#          "amount": 2}, 
+#         {"product_id": "6279fd24f5f7ee2f2cf81d43",
+#          "amount": 3},
+#          {"product_id": "627b870bc04291b8271cba98",
+#          "amount": -1}]
+# }
+
+### Update order
+PUT http://localhost:3000/api/orders/62811451b04319b8e323f9b1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjI4MTE3NWMwNmM4NzZkMmFlNWE2NWI1IiwidXNlcm5hbWUiOiJraWVudHJ1bmciLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIHwgQWRtaW4iLCJpYXQiOjE2NTI2NzIyNTYsImV4cCI6MTY1MjY3NTg1Nn0.WTEIcvVM384TU7TgjOuBfKxRc69hbmrVc_QglTQ_Irs
+content-type: application/json
+
+{
+    "total_price" : 114997001,
+    "product_list": [
+        {"product_id": "6279fd15f5f7ee2f2cf81d3f",
+         "amount": 2}, 
+        {"product_id": "6279fd24f5f7ee2f2cf81d43",
+         "amount": 3},
+         {"product_id": "627b870bc04291b8271cba98",
+         "amount": 1}]
+}
+
+### Delete order
+DELETE http://localhost:3000/api/orders/6279e66fccc253932c35d75f HTTP/1.1

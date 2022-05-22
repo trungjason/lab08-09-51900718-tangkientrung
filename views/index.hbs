@@ -1,0 +1,113 @@
+<div class="container my-3">
+  <h4 class="text-primary text-center text-uppercase">Danh sách sản phẩm</h4>
+
+  <div class="row mb-5">
+
+    {{#if userLogin}}
+      <a class="float-right mr-3" href="/product-management"><button
+        class="btn btn-info btn-sm"
+      >Quản lý danh sách sản phẩm</button></a>
+
+      <a class="float-right mr-3" href="/order-management"><button
+        class="btn btn-info btn-sm"
+      >Quản lý đơn hàng</button></a>
+
+      <a class="float-right mr-3" href="/logout"><button
+          class="btn btn-warning btn-sm"
+        >Đăng xuất</button></a>
+
+    {{else}}
+      <a class="float-right" href="/login"><button
+          class="btn btn-success btn-sm"
+        >Đăng nhập</button></a>
+
+    {{/if}}
+
+  </div>
+
+  <div id="product-body" class="row">
+    {{!-- {{#each product}}
+      <div class="col-lg-4 col-md-3 col-sm-6 mb-3">
+        <div class="card bg-light text-center">
+          <img class="card-img-top" src="..." alt="Card image cap" />
+          <div class="card-body">
+            <h5 class="card-title">Product name</h5>
+            <p class="card-text">Product description</p>
+            <button class="btn btn-primary">$Price</button>
+          </div>
+          <div class="card-footer p-0">
+            <button class="btn btn-info w-100">Add to cart</button>
+          </div>
+        </div>
+      </div>
+    {{/each}} --}}
+  </div>
+
+</div>
+
+{{! Flash mesage }}
+<div id="flash-alert" class="alert alert-success text-center w-25 mx-auto my-3">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong id="flash-alert-message"></strong>
+</div>
+
+{{! Model region }}
+
+<!-- Detail user -->
+<div
+  class="modal fade"
+  id="detailProduct"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="detailProductLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Chi tiết thông tin sản phẩm</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="card" class="w-100">
+          <img
+            id="detail-product-image"
+            class="card-img-top"
+            src=""
+            alt="Detail product image"
+          />
+          <div class="card-body">
+            <h4 class="card-title text-primary" id="detail-product-name"></h4>
+            <p class="card-text">Giá sản phẩm:
+              <strong id="detail-product-price"></strong></p>
+            <p class="card-text">Mô tả sản phẩm:
+              <strong id="detail-product-description"></strong></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-dark"
+          data-dismiss="modal"
+        >Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Detail user -->
+
+<script src="/javascripts/main.js"></script>
